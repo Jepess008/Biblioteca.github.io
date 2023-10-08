@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libreria Acme</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Biblioteca Campus</h1>
+    </header>
+
+    <main>
+        <section class="control">
+            <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Agregar Libro
+                </button>
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div>
+                        <form>
+                            <label for="portada">Portada</label>
+                            <input type="url" name="portada" id="portada" placeholder="Ingrese la url de la portada">
+                            <br>
+                            <label for="title">Titulo del Libro</label>
+                            <input type="text" name="title" placeholder="Titulo del Libro" id="titulo">
+                            <br>
+                            <label for="autor">Autor del Libro</label>
+                            <input type="text" name="autor" placeholder="Autor del Libro" id="autor">
+                            <label for="año">Año de Publicaciòn</label>
+                            <input type="number" name="año" placeholder="Año de Publicaciòn" id="año">
+                            <label for="disponible">Estado del Libro</label>
+                            <select name="disponible" id="estado">
+                                <option value=""></option>
+                                <option value="Disponible">Disponible</option>
+                                <option value="No-disponible">No Disponible</option>
+                            </select>
+                            <br>
+                            <label for="prestado">Prestado a:</label>
+                            <input type="text" name="prestado" placeholder="Prestado a la persona: " id="prestado">
+
+                        </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="agregar" data-bs-dismiss="modal">Agregar</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="Nombre-Modal" tabindex="-2" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sección Agregar Libro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="agregar" data-bs-dismiss="modal">Agregar</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px; margin-bottom: 10px;">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Eliminar Libro
+                </button>
+                
+                
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Sección Eliminar Libro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <label for="buscar">Ingrese el Titulo del Libro que desea Eliminar: </label>
+                        <input type="text" name="buscar" id="buscar">
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="eliminar">Eliminar</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalOrdenar">
+                Ordenar
+            </button>
+            
+            <div id="modalOrdenar" class="modal">
+                <h2 style="text-align: center; font-size: 50px; margin-top: 100px; color: white;">Opciones de Orden</h2>
+                <div style="display: flex; justify-content: space-around; margin-top: 100px;">
+                <button class="btn btn-primary" onclick="OrdenarPorTitulo()">Ordenar por Título</button>
+                <button class="btn btn-primary" onclick="OrdenarPorAutor()">Ordenar por Autor</button>
+                <button class="btn btn-primary" onclick="OrdenarPorDisponibilidad()">Ordenar por Disponibilidad</button>
+                <button class="btn btn-primary" onclick="CerrarVentanaEmergente()">Cerrar</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="libros" class="listado">
+            
+        </div>
+        
+    </main>
+
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
